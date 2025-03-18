@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MAUI_documentation_project.Extensions;
+using Microsoft.Extensions.Logging;
 
 namespace MAUI_documentation_project;
 
@@ -13,7 +14,9 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            });
+            })
+            .RegisterShellRoutes()
+            .RegisteServices();
 
 #if DEBUG
         builder.Logging.AddDebug();

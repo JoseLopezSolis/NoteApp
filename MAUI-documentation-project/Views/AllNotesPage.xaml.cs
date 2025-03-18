@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MAUI_documentation_project.Helpers;
 
 namespace MAUI_documentation_project.Views;
 
@@ -33,7 +34,7 @@ public partial class AllNotesPage : ContentPage
             var note = (Models.Note)e.CurrentSelection[0];
 
             // Should navigate to "NotePage?ItemId=path\on\device\XYZ.notes.txt"
-            await Shell.Current.GoToAsync($"{nameof(NotePage)}?{nameof(NotePage.ItemId)}={note.Filename}");
+            await Shell.Current.GoToAsync($"{RouteConstants.NotePageRoute}?{nameof(NotePage.ItemId)}={note.Filename}");
 
             // Unselect the UI
             notesCollection.SelectedItem = null;
