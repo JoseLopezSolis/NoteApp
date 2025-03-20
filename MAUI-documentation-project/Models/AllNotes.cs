@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 namespace MAUI_documentation_project.Models;
 internal class AllNotes
 {
-    public ObservableCollection<Note> Notes { get; set; } = new ObservableCollection<Note>();
+    public ObservableCollection<Note> Notes { get; } = new ObservableCollection<Note>();
 
     public AllNotes() =>
         LoadNotes();

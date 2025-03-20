@@ -1,9 +1,9 @@
 namespace MAUI_documentation_project.Models;
 
-internal class About
+public class About
 {
-    public string Title => AppInfo.Name;
-    public string Version => AppInfo.VersionString;
-    public string MoreInfoUrl => "https://aka.ms/maui";
-    public string Message => "This app is written in XAML and C# with .NET MAUI.";
+        public string Title { get; set; } = "My App";
+        public string Version { get; set; } = "1.0.0";
+        public string Message { get; set; } = "Welcome to our application!";
+        public string MoreInfoUrl { get; set; } = "https://dotnet.microsoft.com/";
 }

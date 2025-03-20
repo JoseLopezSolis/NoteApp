@@ -14,7 +14,8 @@ public static class MauiProgramExtension
     /// <returns></returns>
     public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
     {
-        builder.Services.AddTransient<AllNotesPage, AllNotesPageViewModel>();
+        // builder.Services.AddTransient<AllNotesPage, AllNotesPageViewModel>();
+        builder.Services.AddTransient<AboutPage, AboutPageViewModel>();
         
         return builder;
     }
