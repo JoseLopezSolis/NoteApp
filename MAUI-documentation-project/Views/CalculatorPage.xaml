@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<base:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:base="clr-namespace:MAUI_documentation_project.Views.Base"
+      x:Class="MAUI_documentation_project.Views.CalculatorPage"
+      xmlns:vm="clr-namespace:MAUI_documentation_project.ViewModels"
+      x:DataType="vm:CalculatorPageViewModel"
+      Title="Basic calculator"
+    >
+    
+    <VerticalStackLayout Padding="10"
+                         Spacing="10"
+                         BackgroundColor="White">
+
+            <!-- Display for result -->
+            <Label 
+                   Text="{Binding CurrentInput}" 
+                   FontSize="70" 
+                   HorizontalOptions="End" 
+                   VerticalOptions="Center"
+                   TextColor="#000"
+                   FontAttributes="Bold"/>
+
+                <!-- Buttons Grid -->
+            <Grid Margin="0"
+                  RowDefinitions="Auto, Auto, Auto, Auto" 
+                  ColumnDefinitions="Auto, Auto, Auto, Auto"
+                  HorizontalOptions="Center"
+                  VerticalOptions="End">
+
+                    <!-- Row 1 -->
+                    <Button Text="7" Command="{Binding ButtonClickedCommand}" CommandParameter="7" Grid.Row="0" Grid.Column="0" BackgroundColor="#007AFF" TextColor="White" Margin="5" WidthRequest="100" HeightRequest="100"/>
+                    <Button Text="8" Command="{Binding ButtonClickedCommand}" CommandParameter="8" Grid.Row="0" Grid.Column="1" BackgroundColor="#007AFF" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+                    <Button Text="9" Command="{Binding ButtonClickedCommand}" CommandParameter="9" Grid.Row="0" Grid.Column="2" BackgroundColor="#007AFF" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100" />
+                    <Button Text="/" Command="{Binding ButtonClickedCommand}" CommandParameter="/"  Grid.Row="0" Grid.Column="3" BackgroundColor="#FF9500" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+
+                    <!-- Row 2 -->
+                    <Button Text="4" Command="{Binding ButtonClickedCommand}" CommandParameter="4" Grid.Row="1" Grid.Column="0" BackgroundColor="#007AFF" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+                    <Button Text="5" Command="{Binding ButtonClickedCommand}" CommandParameter="5" Grid.Row="1" Grid.Column="1" BackgroundColor="#007AFF" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+                    <Button Text="6" Command="{Binding ButtonClickedCommand}" CommandParameter="6" Grid.Row="1" Grid.Column="2" BackgroundColor="#007AFF" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+                    <Button Text="*" Command="{Binding ButtonClickedCommand}" CommandParameter="*" Grid.Row="1" Grid.Column="3" BackgroundColor="#FF9500" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+
+                    <!-- Row 3 -->
+                    <Button Text="1" Command="{Binding ButtonClickedCommand}" CommandParameter="1" Grid.Row="2" Grid.Column="0" BackgroundColor="#007AFF" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+                    <Button Text="2" Command="{Binding ButtonClickedCommand}" CommandParameter="2" Grid.Row="2" Grid.Column="1" BackgroundColor="#007AFF" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+                    <Button Text="3" Command="{Binding ButtonClickedCommand}" CommandParameter="3" Grid.Row="2" Grid.Column="2" BackgroundColor="#007AFF" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+                    <Button Text="-" Command="{Binding ButtonClickedCommand}" CommandParameter="-" Grid.Row="2" Grid.Column="3" BackgroundColor="#FF9500" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+
+                    <!-- Row 4 -->
+                    <Button Text="0" Command="{Binding ButtonClickedCommand}" CommandParameter="0" Grid.Row="3" Grid.Column="0" BackgroundColor="#007AFF" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+                    <Button Text="C" Command="{Binding DeleteClickedCommand}" Grid.Row="3" Grid.Column="1" BackgroundColor="#FF3B30" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+                    <Button Text="=" Command="{Binding ButtonClickedCommand}" CommandParameter="=" Grid.Row="3" Grid.Column="2" BackgroundColor="#34C759" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+                    <Button Text="+" Command="{Binding ButtonClickedCommand}" CommandParameter="+" Grid.Row="3" Grid.Column="3" BackgroundColor="#FF9500" TextColor="White"  Margin="5" WidthRequest="100" HeightRequest="100"/>
+
+            </Grid>
+
+    </VerticalStackLayout>
+</base:BasePage>

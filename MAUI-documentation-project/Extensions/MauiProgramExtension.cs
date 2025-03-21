@@ -16,7 +16,7 @@ public static class MauiProgramExtension
     {
         // builder.Services.AddTransient<AllNotesPage, AllNotesPageViewModel>();
         builder.Services.AddTransient<AboutPage, AboutPageViewModel>();
-        
+        builder.Services.AddTransient<CalculatorPage, CalculatorPageViewModel>();
         return builder;
     }
     
