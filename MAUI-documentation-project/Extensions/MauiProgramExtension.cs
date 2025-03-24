@@ -1,5 +1,7 @@
 using CommunityToolkit.Maui;
 using MAUI_documentation_project.Helpers;
+using MAUI_documentation_project.Services.Implementations;
+using MAUI_documentation_project.Services.Interfaces;
 using MAUI_documentation_project.ViewModels;
 using MAUI_documentation_project.Views;
 
@@ -39,7 +41,9 @@ public static class MauiProgramExtension
     /// <returns></returns>
     public static MauiAppBuilder RegisteServices(this MauiAppBuilder builder)
     {
-                
+        builder.Services.AddSingleton<INavigationService, NavigationService>();
+        builder.Services.AddSingleton<ILauncherService, LauncherService>();
+        
         return builder;
     }
 }

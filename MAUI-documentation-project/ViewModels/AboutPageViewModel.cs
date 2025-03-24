@@ -1,21 +1,43 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MAUI_documentation_project.Models;
+using MAUI_documentation_project.Services.Interfaces;
 using MAUI_documentation_project.ViewModels.Base;
 
 namespace MAUI_documentation_project.ViewModels;
 
 public partial class AboutPageViewModel : BaseViewModel
 {
+    #region Private Properties
+
+    private readonly ILauncherService _launcherService;
+
+    #endregion
+
+    #region Bindable Properties
+
     // Property for holding About information (this could be a Model)
     [ObservableProperty]
     private About _about = new About();
+
+    #endregion
+
+    public AboutPageViewModel(
+        INavigationService navigationService,
+        ILauncherService launcherService) : base(navigationService)
+    {
+        _launcherService = launcherService;
+    }
+
+    #region Relay Commands
 
     // Command for handling the "Learn More" button click
     [RelayCommand]
     private async Task LearnMore()
     {
         if (!string.IsNullOrWhiteSpace(About.MoreInfoUrl))
-            await Launcher.Default.OpenAsync(About.MoreInfoUrl);
+            await _launcherService.OpenAsync(About.MoreInfoUrl);
     }
+
+    #endregion
 }

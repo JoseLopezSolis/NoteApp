@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MAUI_documentation_project.Helpers;
 using MAUI_documentation_project.Models;
+using MAUI_documentation_project.Services.Interfaces;
 using MAUI_documentation_project.ViewModels.Base;
 using MAUI_documentation_project.Views;
 
@@ -15,7 +16,7 @@ public partial class AllNotesPageViewModel : BaseViewModel
 
     [ObservableProperty] private Note selectedNote;
 
-    public AllNotesPageViewModel()
+    public AllNotesPageViewModel(INavigationService navigationService) : base(navigationService)
     {
     }
 
@@ -36,7 +37,13 @@ public partial class AllNotesPageViewModel : BaseViewModel
     {
         if (SelectedNote != null)
         {
-            await Shell.Current.GoToAsync($"{RouteConstants.NotePageRoute}?{nameof(NotePage.ItemId)}={SelectedNote.Filename}");
+            await NavigationService
+                .GoToAsync(
+                    RouteConstants.NotePageRoute, 
+                    new Dictionary<string, object>
+                    {
+                        { nameof(NotePage.ItemId), SelectedNote.Filename }
+                    });
         }
 
         SelectedNote = null;

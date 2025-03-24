@@ -1,6 +1,7 @@
 using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MAUI_documentation_project.Services.Interfaces;
 using MAUI_documentation_project.ViewModels.Base;
 
 namespace MAUI_documentation_project.ViewModels;
@@ -17,7 +18,7 @@ public partial class CalculatorPageViewModel : BaseViewModel
     [ObservableProperty] 
     private double _resultOperation = 0;
 
-    public CalculatorPageViewModel()
+    public CalculatorPageViewModel(INavigationService navigationService) : base(navigationService)
     {
         _currentInput = "0";
     }

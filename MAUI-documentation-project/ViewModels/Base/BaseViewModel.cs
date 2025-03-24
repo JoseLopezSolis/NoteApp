@@ -1,14 +1,24 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using MAUI_documentation_project.Services.Interfaces;
 using MAUI_documentation_project.ViewModels.Interfaces;
 
 namespace MAUI_documentation_project.ViewModels.Base;
 
 public class BaseViewModel : ObservableObject, IViewModel, IQueryAttributable
 {
-    public BaseViewModel()
+    #region Private Properties
+
+    protected readonly INavigationService NavigationService;
+
+    #endregion
+    
+    public BaseViewModel(INavigationService navigationService)
     {
-        
+        navigationService = navigationService;
     }
+
+    #region Virtual Methods
+
     public virtual void OnAppearing()
     {
     }
@@ -24,4 +34,6 @@ public class BaseViewModel : ObservableObject, IViewModel, IQueryAttributable
     protected virtual void InitProperties()
     {
     }
+
+    #endregion
 }
