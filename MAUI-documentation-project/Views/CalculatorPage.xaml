@@ -100,100 +100,75 @@
             
             <!-- Row 3 -->
             <Button 
-                Text="1" 
-                Command="{Binding ButtonClickedCommand}" 
-                CommandParameter="1" 
                 Grid.Row="2" 
                 Grid.Column="0" 
-                BackgroundColor="#007AFF" 
-                TextColor="White"  
-                Margin="5" 
-                WidthRequest="100" 
-                HeightRequest="100"/>
+                Text="1" 
+                Command="{Binding ButtonClickedCommand}" 
+                CommandParameter="1"
+                Style="{StaticResource CalculatorBlueButtonStyle}"
+                />
             
             <Button 
-                Text="2" 
-                Command="{Binding ButtonClickedCommand}"
-                CommandParameter="2" 
                 Grid.Row="2" 
                 Grid.Column="1" 
-                BackgroundColor="#007AFF" 
-                TextColor="White" 
-                Margin="5" 
-                WidthRequest="100" 
-                HeightRequest="100"/>
+                Text="2" 
+                Command="{Binding ButtonClickedCommand}"
+                CommandParameter="2"
+                Style="{StaticResource CalculatorBlueButtonStyle}"
+                />
             
             <Button 
-                Text="3" 
-                Command="{Binding ButtonClickedCommand}" 
-                CommandParameter="3" 
                 Grid.Row="2" 
                 Grid.Column="2" 
-                BackgroundColor="#007AFF" 
-                TextColor="White" 
-                Margin="5"
-                WidthRequest="100"
-                HeightRequest="100"/>
+                Text="3" 
+                Command="{Binding ButtonClickedCommand}" 
+                CommandParameter="3"
+                Style="{StaticResource CalculatorBlueButtonStyle}"
+                />
             
             <Button 
-                Text="-" 
-                Command="{Binding ButtonClickedCommand}" 
-                CommandParameter="-" 
                 Grid.Row="2" 
                 Grid.Column="3" 
-                BackgroundColor="#FF9500" 
-                TextColor="White"  
-                Margin="5" 
-                WidthRequest="100" 
-                HeightRequest="100"/>
+                Text="-" 
+                Command="{Binding ButtonClickedCommand}" 
+                CommandParameter="-"
+                Style="{StaticResource CalculatorOrangeButtonStyle}"
+               />
 
             <!-- Row 4 -->
             <Button 
+                Grid.Row="3" 
+                Grid.Column="0" 
                 Text="0"
                 Command="{Binding ButtonClickedCommand}" 
                 CommandParameter="0" 
-                Grid.Row="3" 
-                Grid.Column="0" 
-                BackgroundColor="#007AFF" 
-                TextColor="White" 
-                Margin="5" 
-                WidthRequest="100" 
-                HeightRequest="100"/>
+                Style="{StaticResource CalculatorBlueButtonStyle}"
+                />
             
             <Button 
-                Text="C" 
-                Command="{Binding DeleteClickedCommand}" 
                 Grid.Row="3" 
                 Grid.Column="1"
-                BackgroundColor="#FF3B30" 
-                TextColor="White" 
-                Margin="5"
-                WidthRequest="100" 
-                HeightRequest="100"/>
+                Text="C" 
+                Command="{Binding DeleteClickedCommand}"
+                Style="{StaticResource CalculatorRedButtonStyle}"/>
             
             <Button 
+                Grid.Row="3"
+                Grid.Column="2"
                 Text="=" 
                 Command="{Binding ButtonClickedCommand}" 
                 CommandParameter="=" 
-                Grid.Row="3"
-                Grid.Column="2"
-                BackgroundColor="#34C759"
-                TextColor="White" 
-                Margin="5"
-                WidthRequest="100" 
-                HeightRequest="100"/>
+                Style="{StaticResource CalculatorGreenButtonStyle}"
+                />
             
             <Button 
-                Text="+" 
-                Command="{Binding ButtonClickedCommand}" 
-                CommandParameter="+" 
                 Grid.Row="3" 
                 Grid.Column="3" 
-                BackgroundColor="#FF9500" 
-                TextColor="White"  
-                Margin="5" 
-                WidthRequest="100" 
-                HeightRequest="100"/>
+                Text="+" 
+                Command="{Binding ButtonClickedCommand}" 
+                CommandParameter="+"
+                Style="{StaticResource CalculatorOrangeButtonStyle}"
+                />
         </Grid>
     </VerticalStackLayout>
 </base:BasePage>

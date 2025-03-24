@@ -492,5 +492,14 @@
             Property="BackgroundColor"
             Value="{StaticResource CalculatorGreenBackgroundColor}"/>
     </Style>
+    
+    <Style
+        TargetType="Button"
+        BasedOn="{StaticResource BaseCalculatorButtonStyle}"
+        x:Key="CalculatorRedButtonStyle">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource CalculatorRedBackgroundColor}"/>
+    </Style>
 
 </ResourceDictionary>
