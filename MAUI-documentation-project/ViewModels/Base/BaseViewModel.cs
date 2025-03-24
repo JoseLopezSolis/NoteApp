@@ -14,7 +14,7 @@ public class BaseViewModel : ObservableObject, IViewModel, IQueryAttributable
     
     public BaseViewModel(INavigationService navigationService)
     {
-        navigationService = navigationService;
+        NavigationService = navigationService;
     }
 
     #region Virtual Methods
