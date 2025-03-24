@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using MAUI_documentation_project.ViewModels.Interfaces;
 
 namespace MAUI_documentation_project.ViewModels.Base;
 
@@ -16,13 +17,11 @@ public class BaseViewModel : ObservableObject, IViewModel, IQueryAttributable
     {
     }
 
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    public virtual void ApplyQueryAttributes(IDictionary<string, object> query)
     {
     }
 
-    public void InitProperties()
+    protected virtual void InitProperties()
     {
-        throw new NotImplementedException();
     }
-
 }

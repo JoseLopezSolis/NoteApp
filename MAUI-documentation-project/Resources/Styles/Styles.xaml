@@ -447,5 +447,50 @@
         <Setter Property="UnselectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
+    
+    <!-- Custom Styles -->
+    <Style
+        TargetType="Button"
+        x:Key="BaseCalculatorButtonStyle">
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource White}"/>
+        <Setter
+            Property="Margin"
+            Value="5"/>
+        <Setter
+            Property="WidthRequest"
+            Value="100"/>
+        <Setter
+            Property="HeightRequest"
+            Value="100"/>
+    </Style>
+    
+    <Style
+        TargetType="Button"
+        BasedOn="{StaticResource BaseCalculatorButtonStyle}"
+        x:Key="CalculatorBlueButtonStyle">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource CalculatorBlueBackgroundColor}"/>
+    </Style>
+    
+    <Style
+        TargetType="Button"
+        BasedOn="{StaticResource BaseCalculatorButtonStyle}"
+        x:Key="CalculatorOrangeButtonStyle">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource CalculatorOrangeBackgroundColor}"/>
+    </Style>
+    
+    <Style
+        TargetType="Button"
+        BasedOn="{StaticResource BaseCalculatorButtonStyle}"
+        x:Key="CalculatorGreenButtonStyle">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource CalculatorGreenBackgroundColor}"/>
+    </Style>
 
 </ResourceDictionary>

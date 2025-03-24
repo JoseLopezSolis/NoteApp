@@ -1,5 +1,5 @@
 using MAUI_documentation_project.Extensions;
-using MAUI_documentation_project.ViewModels.Base;
+using MAUI_documentation_project.ViewModels.Interfaces;
 
 namespace MAUI_documentation_project.Views.Base;
 
