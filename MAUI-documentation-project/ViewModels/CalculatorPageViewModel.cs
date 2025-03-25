@@ -1,11 +1,9 @@
 using System.Globalization;
-using System.Reflection.PortableExecutable;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MAUI_documentation_project.Enums;
 using MAUI_documentation_project.Services.Interfaces;
 using MAUI_documentation_project.ViewModels.Base;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace MAUI_documentation_project.ViewModels;
 
@@ -26,7 +24,6 @@ public partial class CalculatorPageViewModel : BaseViewModel
     
     private double _previousValue = 0;
     private Operations? _operation;
-    // private string _operation = string.Empty;
     private bool _isNewEntry = false;
     
     #endregion

@@ -32,8 +32,17 @@ public partial class AboutPageViewModel : BaseViewModel
     [RelayCommand]
     private async Task LearnMore()
     {
+        // await _launcherService.OpenAsync(MoreInfoUrl);
+        // await NavigationService
+        //     .GoToAsync(
+        //         RouteConstants.NotePageRoute, 
+        //         new Dictionary<string, object>
+        //         {
+        //             { nameof(NotePage.ItemId), SelectedNote.Filename }
+        //         });
         if (!string.IsNullOrWhiteSpace(MoreInfoUrl))
             await _launcherService.OpenAsync(MoreInfoUrl);
+            // await _launcherService.OpenAsync(MoreInfoUrl);
     }
 
     #endregion
