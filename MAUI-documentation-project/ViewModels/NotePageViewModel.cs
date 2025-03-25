@@ -7,6 +7,7 @@ namespace MAUI_documentation_project.ViewModels;
 
 public partial class NotePageViewModel : BaseViewModel
 {
+    #region Observable_properties
     [ObservableProperty]
     private string filename;
 
@@ -16,10 +17,13 @@ public partial class NotePageViewModel : BaseViewModel
     [ObservableProperty]
     private DateTime date;
 
+    #endregion
+    
     public NotePageViewModel(INavigationService navigationService) : base(navigationService)
     {
     }
-
+    
+    #region Public_methods
     public void LoadNote(string fileName)
     {
         Filename = fileName;
@@ -30,7 +34,9 @@ public partial class NotePageViewModel : BaseViewModel
             Text = File.ReadAllText(fileName);
         }
     }
-
+    #endregion
+    
+    #region Relay_commands
     [RelayCommand]
     private async Task SaveNote()
     {
@@ -40,7 +46,7 @@ public partial class NotePageViewModel : BaseViewModel
             await NavigationService.GoBackAsync();
         }
     }
-
+    
     [RelayCommand]
     private async Task DeleteNote()
     {
@@ -50,4 +56,5 @@ public partial class NotePageViewModel : BaseViewModel
             await NavigationService.GoBackAsync();
         }
     }
+    #endregion
 }

@@ -44,8 +44,24 @@
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
     
     <!-- Custom Colors -->
-    <Color x:Key="CalculatorBlueBackgroundColor">#007AFF</Color>
-    <Color x:Key="CalculatorOrangeBackgroundColor">#FF9500</Color>
-    <Color x:Key="CalculatorGreenBackgroundColor">#34C759</Color>
-    <Color x:Key="CalculatorRedBackgroundColor">#FF0000</Color>
+    <Color 
+        x:Key="CalculatorBlueBackgroundColor"
+        >
+        #007AFF
+    </Color>
+    <Color 
+        x:Key="CalculatorOrangeBackgroundColor"
+        >
+        #FF9500
+    </Color>
+    <Color 
+        x:Key="CalculatorGreenBackgroundColor"
+        >
+        #34C759
+    </Color>
+    <Color 
+        x:Key="CalculatorRedBackgroundColor"
+        >
+        #FF0000
+    </Color>
 </ResourceDictionary>

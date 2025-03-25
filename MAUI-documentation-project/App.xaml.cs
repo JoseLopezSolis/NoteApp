@@ -1,6 +1,4 @@
-﻿using MAUI_documentation_project.Views;
-
-namespace MAUI_documentation_project;
+﻿namespace MAUI_documentation_project;
 
 public partial class App : Application
 {

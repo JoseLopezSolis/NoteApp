@@ -11,27 +11,35 @@ namespace MAUI_documentation_project.ViewModels;
 
 public partial class AllNotesPageViewModel : BaseViewModel
 {
+    
+    #region Observable_properties
+    
     [ObservableProperty]
     private ObservableCollection<Note> notes = new();
 
     [ObservableProperty] private Note selectedNote;
-
+    
+    #endregion
+   
     public AllNotesPageViewModel(INavigationService navigationService) : base(navigationService)
     {
     }
-
+    
+    #region Override_methods
     public override void OnAppearing()
     {
         LoadNotes();
         base.OnAppearing();
     }
-
+    #endregion
+    
+    #region Relay_commands
     [RelayCommand]
     private async Task AddNoteAsync()
     {
         await Shell.Current.GoToAsync(nameof(NotePage));
     }
-
+    
     [RelayCommand]
     private async Task SelectNote()
     {
@@ -48,7 +56,9 @@ public partial class AllNotesPageViewModel : BaseViewModel
 
         SelectedNote = null;
     }
-
+    #endregion
+    
+    #region Public_methods
     public void LoadNotes()
     {
         string appDataPath = FileSystem.AppDataDirectory;
@@ -66,4 +76,5 @@ public partial class AllNotesPageViewModel : BaseViewModel
         Notes = new ObservableCollection<Note>(resultNotes);
 
     }
+    #endregion
 }

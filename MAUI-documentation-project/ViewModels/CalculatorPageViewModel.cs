@@ -8,26 +8,35 @@ namespace MAUI_documentation_project.ViewModels;
 
 public partial class CalculatorPageViewModel : BaseViewModel
 {
+    
+    #region Observable_properties
     [ObservableProperty] 
     private string _currentInput = string.Empty;
-
+    
+    [ObservableProperty] 
+    private double _resultOperation = 0;
+    #endregion
+    
+    #region Private_properties
+    
     private double _previousValue = 0;
     private string _operation = string.Empty;
     private bool _isNewEntry = false;
     
-    [ObservableProperty] 
-    private double _resultOperation = 0;
+    #endregion
 
     public CalculatorPageViewModel(INavigationService navigationService) : base(navigationService)
     {
         _currentInput = "0";
     }
     
+    
+    #region Relay_commands
     /// <summary>
     /// This button display the number selected in the bar that display the numbers
     /// </summary>
     /// <param name="buttonText"></param>
-    
+    /// 
     [RelayCommand]
     private void OnButtonClicked(string buttonText)
     {
@@ -66,12 +75,6 @@ public partial class CalculatorPageViewModel : BaseViewModel
             }
         }
     }
-
-    [RelayCommand]
-    private void OnDeleteClicked()
-    {
-        CurrentInput = "0";
-    }
     
     [RelayCommand]
     private void CalculateResult()
@@ -108,5 +111,6 @@ public partial class CalculatorPageViewModel : BaseViewModel
             _isNewEntry = true;
         }
     }
+    #endregion
     
 }
