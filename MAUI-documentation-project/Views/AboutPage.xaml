@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <base:BasePage 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -9,24 +8,26 @@
     x:DataType="viewmodel:AboutPageViewModel"
     >
     <VerticalStackLayout Spacing="10" Margin="10">
-        <HorizontalStackLayout Spacing="10">
+        <VerticalStackLayout>
             <Image 
                 Source="dotnet_bot.png"
-               SemanticProperties.Description="The dot net bot waving hello!"
-               HeightRequest="64" />
+                SemanticProperties.Description="The dot net bot waving hello!"
+                HeightRequest="64"
+                HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+        <StackLayout 
+            Spacing="20">
             <Label 
-                FontSize="22"
+                FontSize="30"
                 FontAttributes="Bold"
-                Text="{Binding About.Title}"
-               VerticalOptions="End" />
-            <Label 
-                FontSize="22"
-                Text="{Binding About.Version}"
-                VerticalOptions="End" />
-        </HorizontalStackLayout>
+                HorizontalOptions="Center"
+                Text="{Binding Title}"
+                 />
+        </StackLayout>
 
         <Label 
-            Text="{Binding About.Message}" />
+            Text="{Binding Message}" 
+            HorizontalOptions="Center"/>
         <Button 
             Text="Learn more..."
             Command="{Binding LearnMoreCommand}" />

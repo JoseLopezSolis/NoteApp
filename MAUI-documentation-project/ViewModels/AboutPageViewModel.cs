@@ -9,17 +9,14 @@ namespace MAUI_documentation_project.ViewModels;
 public partial class AboutPageViewModel : BaseViewModel
 {
     #region Private Properties
-
     private readonly ILauncherService _launcherService;
-
     #endregion
 
     #region Bindable Properties
-
-    // Property for holding About information (this could be a Model)
-    [ObservableProperty]
-    private About _about = new About();
-
+    public string Title =>"My App";
+    public string Version => "1.0.0";
+    public string Message => "Welcome to my application";
+    private string MoreInfoUrl  => "https://learn.microsoft.com/es-es/dotnet/maui/?view=net-maui-9.0";
     #endregion
 
     public AboutPageViewModel(
@@ -35,8 +32,8 @@ public partial class AboutPageViewModel : BaseViewModel
     [RelayCommand]
     private async Task LearnMore()
     {
-        if (!string.IsNullOrWhiteSpace(About.MoreInfoUrl))
-            await _launcherService.OpenAsync(About.MoreInfoUrl);
+        if (!string.IsNullOrWhiteSpace(MoreInfoUrl))
+            await _launcherService.OpenAsync(MoreInfoUrl);
     }
 
     #endregion

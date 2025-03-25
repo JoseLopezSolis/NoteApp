@@ -5,9 +5,10 @@
 	xmlns:base="clr-namespace:MAUI_documentation_project.Views.Base"
 	x:Class="MAUI_documentation_project.Views.CalculatorPage"
 	xmlns:vm="clr-namespace:MAUI_documentation_project.ViewModels"
+    xmlns:enums="clr-namespace:MAUI_documentation_project.Enums"
 	x:DataType="vm:CalculatorPageViewModel"
 	Title="Basic calculator">
-	<VerticalStackLayout 
+    <VerticalStackLayout 
         Padding="10"
         Spacing="10"
         BackgroundColor="{StaticResource White}">
@@ -60,8 +61,8 @@
                 Grid.Row="0" 
                 Grid.Column="3" 
                 Text="/" 
-                Command="{Binding ButtonClickedCommand}" 
-                CommandParameter="/"  
+                Command="{Binding OperationSelectedCommand}" 
+                CommandParameter="{x:Static enums:Operations.Divide}"
                 Style="{StaticResource CalculatorOrangeButtonStyle}"/>
 
             <!-- Row 2 -->
@@ -93,8 +94,8 @@
                 Grid.Row="1" 
                 Grid.Column="3" 
                 Text="*" 
-                Command="{Binding ButtonClickedCommand}" 
-                CommandParameter="*" 
+                Command="{Binding OperationSelectedCommand}" 
+                CommandParameter="{x:Static enums:Operations.Multiply}"
                 Style="{StaticResource CalculatorOrangeButtonStyle}"/>
             
             <!-- Row 3 -->
@@ -129,8 +130,8 @@
                 Grid.Row="2" 
                 Grid.Column="3" 
                 Text="-" 
-                Command="{Binding ButtonClickedCommand}" 
-                CommandParameter="-"
+                Command="{Binding OperationSelectedCommand}" 
+                CommandParameter="{x:Static enums:Operations.Subtract}"
                 Style="{StaticResource CalculatorOrangeButtonStyle}"
                />
 
@@ -155,8 +156,8 @@
                 Grid.Row="3"
                 Grid.Column="2"
                 Text="=" 
-                Command="{Binding ButtonClickedCommand}" 
-                CommandParameter="=" 
+                Command="{Binding OperationSelectedCommand }" 
+                CommandParameter="{x:Static enums:Operations.Equal}" 
                 Style="{StaticResource CalculatorGreenButtonStyle}"
                 />
             
@@ -164,8 +165,8 @@
                 Grid.Row="3" 
                 Grid.Column="3" 
                 Text="+" 
-                Command="{Binding ButtonClickedCommand}" 
-                CommandParameter="+"
+                Command="{Binding OperationSelectedCommand}" 
+                CommandParameter="{x:Static enums:Operations.Sum }" 
                 Style="{StaticResource CalculatorOrangeButtonStyle}"
                 />
         </Grid>

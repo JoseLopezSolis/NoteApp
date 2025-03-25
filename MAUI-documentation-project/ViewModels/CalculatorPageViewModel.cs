@@ -1,8 +1,11 @@
 using System.Globalization;
+using System.Reflection.PortableExecutable;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MAUI_documentation_project.Enums;
 using MAUI_documentation_project.Services.Interfaces;
 using MAUI_documentation_project.ViewModels.Base;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace MAUI_documentation_project.ViewModels;
 
@@ -10,17 +13,20 @@ public partial class CalculatorPageViewModel : BaseViewModel
 {
     
     #region Observable_properties
+    
     [ObservableProperty] 
     private string _currentInput = string.Empty;
     
     [ObservableProperty] 
     private double _resultOperation = 0;
+    
     #endregion
     
     #region Private_properties
     
     private double _previousValue = 0;
-    private string _operation = string.Empty;
+    private Operations? _operation;
+    // private string _operation = string.Empty;
     private bool _isNewEntry = false;
     
     #endregion
@@ -40,61 +46,80 @@ public partial class CalculatorPageViewModel : BaseViewModel
     [RelayCommand]
     private void OnButtonClicked(string buttonText)
     {
-        if (buttonText == "+" || buttonText == "-" || buttonText == "*" || buttonText == "/")
+        if (_isNewEntry)
         {
-            if (double.TryParse(CurrentInput, NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out var value))
-            {
-                _previousValue = value;
-            }
-            _operation = buttonText;
-            _isNewEntry = true;
-        }
-        else if (buttonText == "=")
-        {
-            CalculateResult();
+            CurrentInput = buttonText;
+            _isNewEntry = false;
         }
         else
         {
-            if (_isNewEntry)
+            string newInput = (CurrentInput == "0" && buttonText != ".") ? buttonText : CurrentInput + buttonText;
+
+            if (double.TryParse(newInput.Replace(",", ""), out double formattedNumber))
             {
-                CurrentInput = buttonText;
-                _isNewEntry = false;
+                CurrentInput = formattedNumber.ToString("N0", CultureInfo.InvariantCulture);
             }
             else
             {
-                string newInput = (CurrentInput == "0" && buttonText != ".") ? buttonText : CurrentInput + buttonText;
-
-                if (double.TryParse(newInput.Replace(",", ""), out double formattedNumber))
-                {
-                    CurrentInput = formattedNumber.ToString("N0", CultureInfo.InvariantCulture);
-                }
-                else
-                {
-                    CurrentInput = newInput;
-                }
+                CurrentInput = newInput;
             }
         }
     }
-    
+
+    private void setPreviousValue(Operations operation)
+    {
+        if (double.TryParse(CurrentInput, NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out var value))
+        {
+            _previousValue = value;
+        }
+        _operation = operation;
+        _isNewEntry = true;
+    }
+
+    [RelayCommand]
+    private void OnOperationSelected(Operations operation)
+    {
+        switch (operation)
+        {
+            case Operations.Sum:
+                setPreviousValue(Operations.Sum);
+                break;
+            case Operations.Subtract:
+                setPreviousValue(Operations.Subtract);
+                break;
+            case Operations.Multiply:
+                setPreviousValue(Operations.Multiply);
+                break;
+            case Operations.Divide:
+                setPreviousValue(Operations.Divide);
+                break;
+            case Operations.Equal:
+                CalculateResult();
+                break;
+            default: 
+                break;
+        }
+    }
+
     [RelayCommand]
     private void CalculateResult()
     {
-        if (!string.IsNullOrEmpty(_operation) && double.TryParse(CurrentInput.Replace(",", ""), out var currentValue))
+        if ( _operation != null && double.TryParse(CurrentInput.Replace(",", ""), out var currentValue))
         {
             double result = _previousValue;
 
             switch (_operation)
             {
-                case "+":
+                case Operations.Sum:
                     result += currentValue;
                     break;
-                case "-":
+                case Operations.Subtract:
                     result -= currentValue;
                     break;
-                case "*":
+                case Operations.Multiply:
                     result *= currentValue;
                     break;
-                case "/":
+                case Operations.Divide:
                     if (currentValue != 0)
                         result /= currentValue;
                     else
@@ -107,10 +132,15 @@ public partial class CalculatorPageViewModel : BaseViewModel
 
             _previousValue = result;
             CurrentInput = result.ToString("N0", CultureInfo.InvariantCulture);
-            _operation = string.Empty;
+            _operation = null;
             _isNewEntry = true;
         }
     }
+
+    [RelayCommand]
+    private void DeleteClicked()
+    {
+        CurrentInput = "0";
+    }
     #endregion
-    
 }
