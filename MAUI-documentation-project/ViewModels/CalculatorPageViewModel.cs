@@ -2,6 +2,7 @@ using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MAUI_documentation_project.Enums;
+using MAUI_documentation_project.Services.database;
 using MAUI_documentation_project.Services.Interfaces;
 using MAUI_documentation_project.ViewModels.Base;
 
@@ -28,7 +29,7 @@ public partial class CalculatorPageViewModel : BaseViewModel
     
     #endregion
 
-    public CalculatorPageViewModel(INavigationService navigationService) : base(navigationService)
+    public CalculatorPageViewModel(INavigationService navigationService, ILiteDbService liteDbService) : base(navigationService, liteDbService)
     {
         _currentInput = "0";
     }
@@ -53,13 +54,9 @@ public partial class CalculatorPageViewModel : BaseViewModel
             string newInput = (CurrentInput == "0" && buttonText != ".") ? buttonText : CurrentInput + buttonText;
 
             if (double.TryParse(newInput.Replace(",", ""), out double formattedNumber))
-            {
                 CurrentInput = formattedNumber.ToString("N0", CultureInfo.InvariantCulture);
-            }
             else
-            {
                 CurrentInput = newInput;
-            }
         }
     }
 

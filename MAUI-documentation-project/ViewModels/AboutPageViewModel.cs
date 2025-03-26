@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MAUI_documentation_project.Models;
+using MAUI_documentation_project.Services.database;
 using MAUI_documentation_project.Services.Interfaces;
 using MAUI_documentation_project.ViewModels.Base;
 
@@ -21,7 +22,7 @@ public partial class AboutPageViewModel : BaseViewModel
 
     public AboutPageViewModel(
         INavigationService navigationService,
-        ILauncherService launcherService) : base(navigationService)
+        ILauncherService launcherService, ILiteDbService liteDbService) : base(navigationService ,liteDbService)
     {
         _launcherService = launcherService;
     }

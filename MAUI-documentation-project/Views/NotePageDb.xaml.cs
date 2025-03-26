@@ -1,8 +1,8 @@
 namespace MAUI_documentation_project.Views;
 
-public partial class AllNotesPage
+public partial class NotePageDb
 {
-    public AllNotesPage()
+    public NotePageDb()
     {
         InitializeComponent();
     }

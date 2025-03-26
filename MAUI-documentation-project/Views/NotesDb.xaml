@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base:BasePage
+     xmlns:base="clr-namespace:MAUI_documentation_project.Views.Base"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     xmlns:vm="clr-namespace:MAUI_documentation_project.ViewModels"
+     xmlns:model="clr-namespace:MAUI_documentation_project.Models"
+     x:DataType="vm:NotesDbViewModel"
+     x:Class="MAUI_documentation_project.Views.NotesDb">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="Add" 
+            Command="{Binding  AddNoteCommand}" 
+            IconImageSource="{FontImage Glyph='+', Color=Black, Size=22}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout>
+                <CollectionView 
+                    ItemsSource="{Binding Notes}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate  
+                            x:DataType="model:NoteDb">
+                            <Frame 
+                                Padding="5" 
+                                Margin="10,5"
+                                BorderColor="{StaticResource Gray100}">
+                                <VerticalStackLayout>
+                                    <Label 
+                                        Text="{Binding BodyNote}" 
+                                        FontSize="18" 
+                                        FontAttributes="Bold"/>
+                                    <Label 
+                                        Text="{Binding Date}" 
+                                        FontSize="14"/>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</base:BasePage>

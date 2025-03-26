@@ -1,5 +1,4 @@
 using MAUI_documentation_project.ViewModels;
-
 namespace MAUI_documentation_project.Views;
 
 [QueryProperty(nameof(ItemId), nameof(ItemId))]

@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MAUI_documentation_project.Services.database;
 using MAUI_documentation_project.Services.Interfaces;
 using MAUI_documentation_project.ViewModels.Base;
 
@@ -19,7 +20,7 @@ public partial class NotePageViewModel : BaseViewModel
 
     #endregion
     
-    public NotePageViewModel(INavigationService navigationService) : base(navigationService)
+    public NotePageViewModel(INavigationService navigationService, ILiteDbService liteDbService) : base(navigationService, liteDbService)
     {
     }
     
