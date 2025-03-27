@@ -45,18 +45,18 @@ public partial class AllNotesPageViewModel : BaseViewModel
     [RelayCommand]
     private async Task SelectNote()
     {
-        // if (SelectedNote != null)
-        // {
-        //     await NavigationService
-        //         .GoToAsync(
-        //             RouteConstants.NotePageDbRoute, 
-        //             new Dictionary<string, object>
-        //             {
-        //                 { nameof(NotePage.ItemId), SelectedNote.Filename }
-        //             });
-        // }
-        //
-        // SelectedNote = null;
+        if (SelectedNote != null)
+        {
+            await NavigationService
+                .GoToAsync(
+                    RouteConstants.NotePageDbRoute, 
+                    new Dictionary<string, object>
+                    {
+                        { nameof(NotePage.ItemId), SelectedNote.Filename }
+                    });
+        }
+        
+        SelectedNote = null;
     }
     #endregion
     

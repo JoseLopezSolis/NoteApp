@@ -16,25 +16,31 @@
     <ContentPage.Content>
         <ScrollView>
             <VerticalStackLayout>
-                <CollectionView 
-                    ItemsSource="{Binding Notes}">
+                <CollectionView
+                    ItemsSource="{Binding Notes}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedNote,Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding onSelectionChangedCommand}"
+                    >
                     <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                        <LinearItemsLayout 
+                            Orientation="Vertical" 
+                            ItemSpacing="10"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
-                        <DataTemplate  
+                        <DataTemplate
                             x:DataType="model:NoteDb">
-                            <Frame 
-                                Padding="5" 
+                            <Frame
+                                Padding="5"
                                 Margin="10,5"
                                 BorderColor="{StaticResource Gray100}">
                                 <VerticalStackLayout>
-                                    <Label 
-                                        Text="{Binding BodyNote}" 
-                                        FontSize="18" 
+                                    <Label
+                                        Text="{Binding BodyNote}"
+                                        FontSize="18"
                                         FontAttributes="Bold"/>
-                                    <Label 
-                                        Text="{Binding Date}" 
+                                    <Label
+                                        Text="{Binding Date}"
                                         FontSize="14"/>
                                 </VerticalStackLayout>
                             </Frame>

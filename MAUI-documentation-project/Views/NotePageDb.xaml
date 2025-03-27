@@ -25,7 +25,7 @@
                 <Button 
                     Grid.Column="1"
                     Text="Delete"
-                    Command="{Binding DeleteNoteCommand}" />
+                    Command="{Binding RemoveCurrentNoteCommand}" />
             </Grid>
         </VerticalStackLayout>
     </ContentPage.Content>

@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LiteDB;
 using MAUI_documentation_project.Models;
 using MAUI_documentation_project.Services.database;
 using MAUI_documentation_project.Services.Interfaces;
@@ -10,26 +11,76 @@ public partial class NotePageDbViewModel : BaseViewModel
 {
     #region Observable_properties
     [ObservableProperty]
-    private string text;
+    private string _text;
 
     [ObservableProperty]
-    private DateTime date;
+    private DateTime _date;
+    
+    [ObservableProperty] 
+    private NoteDb _noteDbInformation;
+
+    private int? _currentNoteId = null;
 
     #endregion
     
-    public NotePageDbViewModel(INavigationService navigationService, ILiteDbService liteDbService) : base(navigationService, liteDbService)
+    #region ObtainingParameters
+    public override void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        if (query.ContainsKey("note"))
+        {
+            var note = (NoteDb)query["note"];
+            NoteDbInformation = note;
+            Text = note.BodyNote;
+            _currentNoteId = note.Id;
+        }
+        base.ApplyQueryAttributes(query);
+    }
+    #endregion
+    
+    public NotePageDbViewModel(INavigationService navigationService,
+        ILiteDbService liteDbService) : base(navigationService, liteDbService)
     {
     }
+
+   
+    
     #region Relay_commands
     [RelayCommand]
     private async Task SaveCurrentNote()
     {
         if (!string.IsNullOrWhiteSpace(Text))
         {
-            DbService.InsertNote(new NoteDb() { BodyNote = Text, Date = DateTime.Now });
-            // var notas = DbService.GetAllNotes();
+            if (_currentNoteId != null) 
+            {
+                var collection = DbService.GetNotesCollection();
+                var note = collection.FindById(_currentNoteId);
+                if (note != null)
+                {
+                    note.BodyNote = Text; 
+                    bool success = collection.Update(note);
+                    Console.WriteLine(success ? "Updated successfully" : "Update failed");
+                }
+            }
+            else
+            {
+                DbService.InsertNote(new NoteDb { BodyNote = Text, Date = DateTime.Now });
+            }
             await NavigationService.GoBackAsync();
         }
     }
     #endregion
+    
+    
+    #region Relay_commands
+    [RelayCommand]
+    private async Task RemoveCurrentNote()
+    {
+            var collection = DbService.GetNotesCollection();
+            var success = collection.Delete(_currentNoteId);
+            Console.WriteLine(success ? "Deleted successfully" : "No document found with that ID");
+            await NavigationService.GoBackAsync();
+    }
+    #endregion
+ 
+
 }
