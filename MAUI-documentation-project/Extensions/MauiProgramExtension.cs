@@ -1,6 +1,6 @@
 using CommunityToolkit.Maui;
 using MAUI_documentation_project.Helpers;
-using MAUI_documentation_project.Services.database;
+using MAUI_documentation_project.Services;
 using MAUI_documentation_project.Services.Implementations;
 using MAUI_documentation_project.Services.Interfaces;
 using MAUI_documentation_project.ViewModels;

@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MAUI_documentation_project.Helpers;
 using MAUI_documentation_project.Models;
-using MAUI_documentation_project.Services.database;
+using MAUI_documentation_project.Services;
 using MAUI_documentation_project.Services.Interfaces;
 using MAUI_documentation_project.ViewModels.Base;
 using MAUI_documentation_project.Views;
@@ -58,7 +58,11 @@ public partial class NotesDbViewModel: BaseViewModel
     
     public override void OnAppearing()
     {
-        Notes = new ObservableCollection<NoteDb>(DbService.GetAllNotes());
+        var result = DbService.GetAllData<NoteDb>();
+        if (result != null)
+        { 
+            Notes = new ObservableCollection<NoteDb>(result);
+        }
         base.OnAppearing(); 
     }
     #endregion

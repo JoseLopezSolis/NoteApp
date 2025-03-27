@@ -1,8 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using LiteDB;
 using MAUI_documentation_project.Models;
-using MAUI_documentation_project.Services.database;
+using MAUI_documentation_project.Services;
 using MAUI_documentation_project.Services.Interfaces;
 using MAUI_documentation_project.ViewModels.Base;
 namespace MAUI_documentation_project.ViewModels;
@@ -19,7 +18,7 @@ public partial class NotePageDbViewModel : BaseViewModel
     [ObservableProperty] 
     private NoteDb _noteDbInformation;
 
-    private int? _currentNoteId = null;
+    private int? _currentNoteId;
 
     #endregion
     
@@ -52,18 +51,17 @@ public partial class NotePageDbViewModel : BaseViewModel
         {
             if (_currentNoteId != null) 
             {
-                var collection = DbService.GetNotesCollection();
-                var note = collection.FindById(_currentNoteId);
+                var note = DbService.FindById<NoteDb>(_currentNoteId.Value);
                 if (note != null)
                 {
                     note.BodyNote = Text; 
-                    bool success = collection.Update(note);
+                    bool success = DbService.Update(note);
                     Console.WriteLine(success ? "Updated successfully" : "Update failed");
                 }
             }
             else
             {
-                DbService.InsertNote(new NoteDb { BodyNote = Text, Date = DateTime.Now });
+                DbService.Insert(new NoteDb { BodyNote = Text, Date = DateTime.Now });
             }
             await NavigationService.GoBackAsync();
         }
@@ -75,10 +73,12 @@ public partial class NotePageDbViewModel : BaseViewModel
     [RelayCommand]
     private async Task RemoveCurrentNote()
     {
-            var collection = DbService.GetNotesCollection();
-            var success = collection.Delete(_currentNoteId);
+        if (_currentNoteId != null)
+        {
+            var success = DbService.Delete<NoteDb>(_currentNoteId.Value);
             Console.WriteLine(success ? "Deleted successfully" : "No document found with that ID");
             await NavigationService.GoBackAsync();
+        }
     }
     #endregion
  
